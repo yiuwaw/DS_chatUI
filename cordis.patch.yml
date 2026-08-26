@@ -1,0 +1,6 @@
+# dsh-chat-avatar bundle patch：向 web 组合挂载聊天头像插件。
+# Node half 是空 seat；浏览器 half（lib/client.js）由 __ModuleLoader__ 内核挂载，
+# 负责注入 CSS：用户消息右侧头像 + AI 消息左侧头像。
+- insert:
+    - id: chat-avatar
+      name: dsh-chat-avatar
