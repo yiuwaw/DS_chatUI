@@ -29,7 +29,7 @@ dsh plugin --profile web add ./DS_chatUI
 
 ### 方式一：从电脑选择图片（推荐）
 
-重启后打开 DSH Web 的 **设置 → 插件 → 插件配置**，找到 **dsh-chat-avatar** 卡片：
+重启后打开 DSH Web 的 **设置 → 插件 → 聊天头像** 标签页：
 
 - 在“用户头像”或“AI 头像”中点击文件选择框
 - 从电脑选择 PNG / JPG / WebP / GIF 图片（最大 5 MB）
@@ -77,8 +77,8 @@ dsh plugin --profile web update dsh-chat-avatar
 ## 原理
 
 - `cordis.patch.yml`：bundle patch，向 web 组合挂载 `dsh-chat-avatar` 行
-- `lib/index.js`：Node half，注册 settings namespace、提供头像静态服务和图片上传端点
-- `lib/client.js`：浏览器 half，注入头像 CSS，并在「插件配置」里注册电脑图片选择卡片
+- `lib/index.js`：Node half，提供头像静态服务和图片上传端点
+- `lib/client.js`：浏览器 half，注入头像 CSS，并注册独立的「聊天头像」设置标签页
 
 只改浏览器呈现，不会进入模型上下文。
 
