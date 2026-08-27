@@ -1,6 +1,6 @@
 {
   "name": "dsh-chat-avatar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "DSH Web 聊天头像插件：像 QQ/微信一样，给用户消息右侧加头像、AI 消息左侧加头像",
   "type": "module",
   "main": "lib/index.js",
@@ -19,7 +19,8 @@
       "platform": "web",
       "inject": [
         "@deepseek-ai/dsh-client-runtime",
-        "@deepseek-ai/dsh-cordis-client-runner"
+        "@deepseek-ai/dsh-cordis-client-runner",
+        "@deepseek-ai/dsh-client-ui-settings-plugins"
       ]
     }
   },
