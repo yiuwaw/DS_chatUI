@@ -1,11 +1,11 @@
 # DS_chatUI
 
-给 DSH（DeepSeek Harness）Web 对话界面加 QQ/微信式聊天头像：用户消息右侧显示用户头像，AI 消息左侧显示 AI 头像。
+给 DSH（DeepSeek Harness）Web 对话界面加 QQ/微信式聊天头像：用户头像默认隐藏、上传后显示在消息右侧，AI 消息左侧显示头像。
 
 ## 效果
 
-- 用户消息：气泡右上角显示用户头像
-- AI 消息：内容左上角显示 AI 头像
+- 用户消息：默认不显示头像，上传后显示在气泡右上角
+- AI 消息：内容左上角显示内置 AI 头像
 - 窄屏（<640px）自动缩小头像，不挤占正文
 
 ## 安装
@@ -34,7 +34,7 @@ dsh plugin --profile web add ./DS_chatUI
 - 在“用户头像”或“AI 头像”中点击文件选择框
 - 从电脑选择 PNG / JPG / WebP / GIF 图片（最大 5 MB）
 - 选择后自动上传并立即生效，无需刷新或重启
-- 点击“恢复默认”可删除上传的图片并恢复插件内置头像
+- 点击“恢复默认”会删除上传图片；用户头像恢复为不显示，AI 头像恢复为插件内置图片
 
 上传的图片保存在当前 DSH 设置文件旁的 `dsh-chat-avatar/` 目录中，更新插件不会删除；文件名为 `user.custom.*` 或 `ai.custom.*`。
 
@@ -47,13 +47,12 @@ dsh plugin --profile web add ./DS_chatUI
 <DSH_HOME>/plugins/DS_chatUI/avatars/ai.png
 ```
 
-没有上传图片时，优先使用手动放置的本地图片；本地也没有时回退到内置默认头像。
+没有上传图片时，优先使用手动放置的本地图片；用户本地图片也不存在时不显示头像，AI 则回退到内置默认头像。
 
 ### 方式三：CSS 变量覆盖（高级兼容方式）
 
 ```css
 :root {
-  --dsh-chat-avatar-user: url("https://你的用户头像地址.png");
   --dsh-chat-avatar-assistant: url("https://你的AI头像地址.png");
   --dsh-chat-avatar-size: 36px;
   --dsh-chat-avatar-radius: 8px;   /* 8px 像微信方角，50% 像 QQ 圆头像 */
