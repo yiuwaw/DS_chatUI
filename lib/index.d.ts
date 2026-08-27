@@ -1,2 +1,3 @@
 export const name: string;
-export function apply(): void;
+export const inject: string[];
+export function apply(ctx: any): void;
