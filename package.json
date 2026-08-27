@@ -16,7 +16,11 @@
       "patch": "./cordis.patch.yml"
     },
     "client": {
-      "platform": "web"
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-cordis-client-runner"
+      ]
     }
   },
   "files": [
@@ -25,5 +29,8 @@
     "cordis.patch.yml",
     "avatars"
   ],
+  "dependencies": {
+    "schemastery": "^3.18.0"
+  },
   "license": "MIT"
 }

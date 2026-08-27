@@ -27,7 +27,27 @@ dsh plugin --profile web add ./DS_chatUI
 
 ## 自定义头像
 
-头像通过 CSS 变量覆盖。在浏览器 DevTools 控制台粘贴，或注入自定义 CSS：
+### 方式一：在设置界面里改（推荐）
+
+重启后打开 DSH Web 的 **设置 → 插件 → 插件配置**，找到 **dsh-chat-avatar** 卡片：
+
+- **用户头像 URL（右侧）**：填你的头像图片地址
+- **AI 头像 URL（左侧）**：填 AI 头像图片地址
+
+保存后立即生效，无需重启。
+
+### 方式二：本地图片文件
+
+把图片命名为 `user.*` 和 `ai.*`（支持 png / jpg / webp / gif / svg），放进插件目录的 `avatars/` 文件夹：
+
+```
+<DSH_HOME>/plugins/DS_chatUI/avatars/user.png
+<DSH_HOME>/plugins/DS_chatUI/avatars/ai.png
+```
+
+设置界面里留空时，优先使用本地图片；本地也没有时回退到内置默认头像。
+
+### 方式三：CSS 变量覆盖（高级）
 
 ```css
 :root {
@@ -47,8 +67,8 @@ dsh plugin --profile web remove dsh-chat-avatar
 ## 原理
 
 - `cordis.patch.yml`：bundle patch，向 web 组合挂载 `dsh-chat-avatar` 行
-- `lib/index.js`：Node half，空 seat
-- `lib/client.js`：浏览器 half，由 `__ModuleLoader__` 内核物化，`apply()` 注入一个 `<style>` 标签；dispose 时移除
+- `lib/index.js`：Node half，注册 settings namespace（`dsh-chat-avatar`）、提供本地头像静态服务与配置端点
+- `lib/client.js`：浏览器 half，注入头像 CSS、拉取配置覆盖 CSS 变量，并在「插件配置」里注册设置卡片
 
 只改浏览器呈现，不会进入模型上下文。
 
