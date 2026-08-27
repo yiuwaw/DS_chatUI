@@ -1,6 +1,6 @@
 {
   "name": "dsh-chat-avatar",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "DSH Web 聊天头像插件：像 QQ/微信一样，给用户消息右侧加头像、AI 消息左侧加头像",
   "type": "module",
   "main": "lib/index.js",
